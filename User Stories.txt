@@ -1,0 +1,20 @@
+User Stories
+
+2.1 - Prio M
+	KundenNr. und weitere Daten auslesen
+	
+2.2 - Prio H
+	Altersverifikation durch Karte
+	
+2.3 - Prio L
+	zusätzliche Optionen / Behandlungen während der Kur
+
+2.4 - Prio H
+	Bonuspunkte auf der Karte
+	
+2.5 - Prio H
+	Bei Besuch von Sehenswürdigkeiten digitale Stempel auf Karte speichern
+		-> Belohnung bei allen Stempeln
+		
+3.1 - Prio M
+	Nutzungsstatistiken
