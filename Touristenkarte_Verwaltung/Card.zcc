@@ -3,7 +3,7 @@ CardType=ZC3.9
 
 [Card Reader]
 PhysicalReader=100
-VirtualReader=201
+VirtualReader=202
 
 [Compiler]
 ImageFile=false

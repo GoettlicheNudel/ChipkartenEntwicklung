@@ -23,24 +23,18 @@ Option Explicit
 
 ' This variable is of storage type EEPROM
 ' and thus persistent
-EEPROM CardData as String
-
-' This command just returns "Hello World" in response
-' Since no input data is required, LC is set to 0
-Command &H88 &H00 HelloWorld(LC=0, Data as String)
-   Data="Hello World"
-End Command
+EEPROM BonusPoints as Integer
 
 ' This command saves Data in EEPROM.
 ' Since no output data is required, LE is disabled
-Command &H88 &H02 WriteData(Data as String, Disable LE)
+Command &H88 &H42 WriteBonus(Data as Integer, Disable LE)
    ' Just copy it to EEPROM variable to save it
-   CardData=Data
+   BonusPoints=Data
 End Command
 
 ' This command reads data written by WriteData and 
 ' returns this data in response.
 ' Since no input data is required, LC is set to 0
-Command &H88 &H04 ReadData(LC=0, Data as String)
-   Data=CardData
+Command &H88 &H44 ReadBonus(LC=0, Data as Integer)
+   Data=BonusPoints
 End Command

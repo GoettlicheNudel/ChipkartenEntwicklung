@@ -7,3 +7,6 @@ ShowRegisters=Auto
 
 [ZCT]
 0=[ ]Term.zct
+1=[ ]TermBonus.zct
+2=[ ]TermSehenswuerdigkeiten.zct
+3=[ ]TermAltersverifikation.zct

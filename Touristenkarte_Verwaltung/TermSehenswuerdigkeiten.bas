@@ -7,9 +7,17 @@ Rem version) in any way you find useful, provided that you agree
 Rem that ZeitControl GmbH has no warranty, obligations or liability
 Rem for any Sample Application Files.
 Rem ------------------------------------------------------------------
+Option Explicit
 
-Declare Command &H88 &H40 GetAge(LC=0, Data as Integer)
-Declare Command &H88 &H42 WriteBonus(Data as Integer, Disable LE)
-Declare Command &H88 &H44 ReadBonus(LC=0, Data as Integer)
-Declare Command &H88 &H46 GetBitMasK(LC=0, Data as long)
-Declare Command &H88 &H48 SetBitMask(Data as long, Disable LE)
+#include Card.def
+#Include COMMANDS.DEF
+#Include COMMERR.DEF
+#include MISC.DEF
+#Include CARDUTIL.DEF
+
+'  Execution starts here
+
+' Wait for a card
+Call WaitForCard()
+' Reset the card and check status code SW1SW2
+ResetCard : Call CheckSW1SW2()
