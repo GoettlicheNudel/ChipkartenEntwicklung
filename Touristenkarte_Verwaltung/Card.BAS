@@ -24,6 +24,7 @@ Option Explicit
 ' This variable is of storage type EEPROM
 ' and thus persistent
 EEPROM BonusPoints as Integer
+EEPROM AgeRange as Integer ' The age range of the card user (0-9)
 
 ' This command saves Data in EEPROM.
 ' Since no output data is required, LE is disabled
@@ -37,4 +38,8 @@ End Command
 ' Since no input data is required, LC is set to 0
 Command &H88 &H44 ReadBonus(LC=0, Data as Integer)
    Data=BonusPoints
+End Command
+
+Command &H88 &H40 GetAge(LC=0, Data as Integer)
+  Data=AgeRange
 End Command
