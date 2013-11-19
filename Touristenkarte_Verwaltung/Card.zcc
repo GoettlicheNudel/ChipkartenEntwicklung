@@ -1,0 +1,16 @@
+[BasicCard]
+CardType=ZC3.9
+
+[Card Reader]
+PhysicalReader=100
+VirtualReader=202
+
+[Compiler]
+ImageFile=false
+ListingFile=false
+MapFile=false
+SourceFile=Card.bas
+
+[Window Options]
+IOToolTipEnabled=true
+ShowRegisters=Auto
