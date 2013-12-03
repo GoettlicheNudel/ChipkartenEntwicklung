@@ -16,8 +16,28 @@ Option Explicit
 #Include CARDUTIL.DEF
 
 '  Execution starts here
+Public seenStr as String
+Public seenLo as Long
+Public oneBit as Long = 1
+Public seenMask as Long
+Public BitMask as Long
 
 ' Wait for a card
 Call WaitForCard()
 ' Reset the card and check status code SW1SW2
 ResetCard : Call CheckSW1SW2()
+
+'Dauerschleife zu Testzwecken
+While TRUE
+
+Print "Bitte geben sie die Zahl der Sehenswürdigkeit ein: "
+
+Line Input seenStr
+
+seenLo = Val&(seenStr)
+seenMask = oneBit Shl seenLo - 1
+
+   Call SetBitMask(seenMask) : Call CheckSW1SW2()
+   Call GetBitMasK(BitMask) : Call CheckSW1SW2()
+   print BitMask
+WEnd

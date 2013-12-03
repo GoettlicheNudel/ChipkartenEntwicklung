@@ -7,6 +7,7 @@ COM4=Auto
 [Compiler]
 ExeFile=false
 ImageFile=false
+IncludePath=C:\Chip\trunk\Touristenkarte_Verwaltung
 ListingFile=false
 MapFile=false
 SourceFile=TermAltersverifikation.bas
