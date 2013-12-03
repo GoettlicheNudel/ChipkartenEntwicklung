@@ -1,12 +1,3 @@
-Rem BasicCard Sample Source Code Template
-Rem ------------------------------------------------------------------
-Rem Copyright (C) 2008 ZeitControl GmbH
-Rem You have a royalty-free right to use, modify, reproduce and 
-Rem distribute the Sample Application Files (and/or any modified 
-Rem version) in any way you find useful, provided that you agree 
-Rem that ZeitControl GmbH has no warranty, obligations or liability
-Rem for any Sample Application Files.
-Rem ------------------------------------------------------------------
 Option Explicit
 
 #include Card.def
@@ -21,3 +12,18 @@ Option Explicit
 Call WaitForCard()
 ' Reset the card and check status code SW1SW2
 ResetCard : Call CheckSW1SW2()
+
+Rem  Check that the application name is correct
+'Private Name$ : Call GetApplicationID (Name$) : Call CheckSW1SW2()
+'If Name$ <> ApplicationName$ Then Print "This is not a Tourist Card" : Exit
+
+'If SW1SW2 = NotPersonalised Then
+'  Print "Card has not been personaliseda!"
+'  Print "Please contact the Tourist Support."
+'  Exit
+'End If
+
+Private Age% : Call GetAge(Age%) : Call CheckSW1SW2()
+If Age% < 3 Then Print "You are not old enough to use this service or terminal." : Exit
+
+Print "Age verification successful." : Exit
