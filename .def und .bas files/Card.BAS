@@ -26,6 +26,9 @@ Option Explicit
 Eeprom Personalised = False
 EEPROM BonusPoints as Integer
 EEPROM AgeRange as Integer = 3' The age range of the card user (0-9)
+EEPROM Viewed as Long
+
+
 
 ' This command saves Data in EEPROM.
 ' Since no output data is required, LE is disabled
@@ -44,4 +47,12 @@ End Command
 Command &H88 &H40 GetAge(LC=0, Data as Integer)
   If Not Personalised Then SW1SW2 = NotPersonalised : Exit
   Data=AgeRange
+End Command
+
+Command &H88 &H46 GetBitMasK(LC=0, Data as long)
+  Data=Viewed
+End Command
+
+Command &H88 &H48 SetBitMask(Data as long, Disable LE)
+  Viewed = Viewed OR Data
 End Command
