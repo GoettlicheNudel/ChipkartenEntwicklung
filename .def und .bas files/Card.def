@@ -13,3 +13,7 @@ Declare Command &H88 &H42 WriteBonus(Data as Integer, Disable LE)
 Declare Command &H88 &H44 ReadBonus(LC=0, Data as Integer)
 Declare Command &H88 &H46 GetBitMasK(LC=0, Data as long)
 Declare Command &H88 &H48 SetBitMask(Data as long, Disable LE)
+
+Const NotPersonalised = &H8800
+
+Const ApplicationName$ = "Touristenkarte"
