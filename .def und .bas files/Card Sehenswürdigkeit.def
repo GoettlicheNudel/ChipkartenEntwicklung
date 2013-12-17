@@ -1,0 +1,33 @@
+Rem BasicCard Sample Source Code Template
+Rem ------------------------------------------------------------------
+Rem Copyright (C) 2008 ZeitControl GmbH
+Rem You have a royalty-free right to use, modify, reproduce and 
+Rem distribute the Sample Application Files (and/or any modified 
+Rem version) in any way you find useful, provided that you agree 
+Rem that ZeitControl GmbH has no warranty, obligations or liability
+Rem for any Sample Application Files.
+Rem ------------------------------------------------------------------
+
+Declare Command &H88 &H40 GetAge(LC=0, Data as Integer)
+Declare Command &H88 &H42 WriteBonus(Data as Integer, Disable LE)
+Declare Command &H88 &H44 ReadBonus(LC=0, Data as Integer)
+
+
+Rem Gibt die Bitmaske als Long zurück. Sind zb das erste un zweite gesetzt, erhält man 3 zurück.
+Rem Die Bitmaske ist 32bit lang, weswegen man maximal 32 Sehenswürdigkeiten kontrollieren kann.
+Declare Command &H88 &H46 GetBitMask(LC=0, Data as Long)
+
+Rem Setzt ein Bit in der Maske durch einen übergebenen Longwert. So setzt ein Wert von 8 zB das vierte Bit.
+Rem Setzt man das gleiche mehrmals so bleibt sein Wert stehts 1.
+Rem Es ist nich möglich ein bereits gesetzes Bit wieder auf 0 zu setzen.
+Rem Da ein Long 32bit lang ist kann man natürlich nur 32 Sehenswürdigkeiten setzen
+Declare Command &H88 &H48 SetBitMask(Data as long, Disable LE)
+
+Declare Command &H88 &H4A GetCardId(LC=0, Data as Long)
+
+Declare Command &H88 &H4C GetBusFares(LC=0,Data as Integer)
+Declare Command &H88 &H4E IncrementBusFares(LC=0, Disable LE)
+
+Const NotPersonalised = &H8800
+
+Const ApplicationName$ = "Touristenkarte"
