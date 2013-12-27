@@ -17,21 +17,21 @@ Rem  Check that the application name is correct
 Private Name$ : Call GetApplicationID (Name$) : Call CheckSW1SW2()
 If Name$ <> ApplicationName$ Then Print "This is not a Tourist Card" : Exit
 
+Private Age% : Call GetAge(Age%)
+
 If SW1SW2 = NotPersonalised Then
-  Print "Card has not been personalised!"
-  Print "Please contact the Tourist Support."
+  Print "Kundenkarte ist nicht Personalisiert!"
+  Print "Bitte wenden Sie sich an die Touristeninformation."
   Exit
 Else
-   Print "Card is personalised."
-   Print "You need to be at least 18 years old to use this terminal."
-   Print "Reading Age Data."
+   Print "Sie müssen mindestens 18 Jahre alt sein!"
+   Print "Lese Daten..."
 End If
 
-Private Age% : Call GetAge(Age%) : Call CheckSW1SW2()
 If Age% < 3 Then 
-   Print "You are not old enough to use this service or terminal."
+   Print "Sie Sind nicht alt genug um diesen Dienst zu nutzen!"
 Else 
-   Print "Age successfully verified." 
+   Print "Alter erfolgreich verifiziert!" 
 End If
 
 Exit

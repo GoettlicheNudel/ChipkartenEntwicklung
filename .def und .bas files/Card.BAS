@@ -11,6 +11,8 @@ Option Explicit
 
 #include Card.def
 
+Declare ApplicationID = ApplicationName$
+
 #IfDef MultiAppBasicCard
   ' This section is required for MultiApplication BasicCards only
   ' it is ignored for Enhanced and Professional BasicCards
@@ -23,11 +25,10 @@ Option Explicit
 
 ' This variable is of storage type EEPROM
 ' and thus persistent
-Eeprom Personalised = False
+EEPROM Personalised = True
 EEPROM BonusPoints as Integer
-EEPROM AgeRange as Integer = 3' The age range of the card user (0-9)
+EEPROM AgeRange% = 5 ' The age range of the card user (0-9)
 EEPROM Viewed as Long
-
 
 
 ' This command saves Data in EEPROM.
@@ -46,7 +47,7 @@ End Command
 
 Command &H88 &H40 GetAge(LC=0, Data as Integer)
   If Not Personalised Then SW1SW2 = NotPersonalised : Exit
-  Data=AgeRange
+  Data=AgeRange%
 End Command
 
 Command &H88 &H46 GetBitMasK(LC=0, Data as long)
