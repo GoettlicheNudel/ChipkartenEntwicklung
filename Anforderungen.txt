@@ -1,0 +1,36 @@
+Anforderungen an Chipkartensysteme
+
+Es gibt laut [Rank] folgendende Anforderungen an einfache Chipkartensysteme.
+
+1. Einbindung von Experten
+Es ist wichtig, bei der Planung und Umsetzung von Chipkartenanwedung die spezifischen Eigenschaften von Chipkarten zu bedenken, damit das Ergebnis nicht unnötig kompliziert ausfällt, etablierte Anwendungsmechanismen verwendet und keine Sicherheitslücken aufweist. Aus diesem Grund sollte man Experten zu Rate ziehen.
+
+2. Vorrausschauende Anwendungsentwicklung
+Viele Eigenschaften von Chipkartenanwendungen müssen bereits bei der Konzeption berücksichtigt werden, da ein späteres Einbauen einen nicht mehr überschaubaren Aufwand mit sich bringt, sollte es überhaupt noch möglich sein.
+Beispiele dafür sind: Qualität, Sicherheit, Datenschutz und Robustheit.
+
+3. Entwicklung mit Prototypen
+Um die Quallität der Endsoftware zu steigern, kann man mit Hilfe von verschiedenen Prototypen Erfahrungen sammeln, um diese dann im Endprodukt einfließen zu lassen. Mit diesen Prototypen kann man auch die vorher definierten Use-Cases testen. Konzeptionelle Fehler können so frühzeitig erkannt werden, die sonst vielleicht erst zu spät aufgefallen wären.
+
+4. Eine Anwendung pro Chipkarte
+Es ist technisch möglich, auf einer Karte mehrere Anwendungen zu realisieren. Davon ist jedoch aus mehreren Gründen abzuraten: Organisatorisch und vertragstechnisch ergibt sich eine hohe Komplexität und möglicherweise zu große Intressenskonflikte zwischen Karteneigentümer (Primäranwendung), Anwendungsbetreiber (Sekundäranwendung) und Kartenbenutzer. Die Abstimmung zwischen diesen Partein erweist sich oft als schwierig und zeitaufwändig.
+Zudem ist die Chipkarte eine relativ billige Komponente im System, so dass jede Anwendung auf ihrer eigenen Karte realisiert werden kann.
+
+5. Einfache Anwendungen
+Durch eine klare Strukturierung und einen einfachen Aufbau sollte die Anwendung gut verständlich sein, so dass die Funktionsweise und Sicherheit auch von dritten prüfbar ist. Unnötig komplexe Anwendungen schützen nicht vor erfolgreichen Angriffen und sind oftmals sogar ihr Grund. Eine gute Dokumentation ist für die Verständlichkeit der Anwendung auch wichtig.
+
+6. Robuste Anwendungen
+Um dem Systembetreiber Änderungen an der Terminalsoftware oder einen Kartentausch zu ersparen, muss die Anwendung eine gewisse Robustheit aufweisen. Dazu ist bei der Gestaltung der Anwendung jedoch ein hoher Grad an Erfahrung und Feingefühl notwendig.
+Bei der Entwickling einer robusten Amwendung ist beispielsweise darauf zu achten, das Kommandosequenzen zwischen Terminal und Karte möglichst nie zu unerwarteten Resulataten führen, da sonst einer der Kommunikationspartner mit einer Fehlermeldung abbrechen kann.
+
+7. Zentralbetriebene Systeme
+Zentralbetriebene Systeme sind zu bevorzugen, da bei einer Chipkartentransaktion alle Systemkomponenten unter unmittelbarer Kontrolle hat, obwohl Chipkareten auch gut für dezentral und offline arebeitende Systeme geeignet sind.
+Zentrale Systeme ermöglichen es auch, die Karte selbst nur als Identifikationsmedium zu verwenden, und alle anderen Informationen online zu speichern. Da die eigentliche Information sich so nicht auf der Karte befinden muss, kann sie auch schwerer von Unbefugten dort manipuliert werden.
+
+8. Stufenweise Inbetriebname des gesamten Systems
+Risikobedingt ist es ratsam, nie das gesamte System zum gleichen Zeitpunkt in Betrieb zu nehmen, sondern Stufenweise mit Feldversuchen zu beginnen, und die Zahl der Kartenanwender dann auszuweiten. Im Hintergrund werden alle Transaktionen bei einem Feldversuch genau analysiert, und an Lösungsansätzen für aufgedeckte Schwachstellen gearbeitet.  
+
+__
+Quellen:
+
+[Rank] Rankl, Wolfgang: Chipkarten-Anwendungen, Entwurfsmuster für Einsatz und Programmierung von Chipkarten, Carl Hanser Verlag, 2006

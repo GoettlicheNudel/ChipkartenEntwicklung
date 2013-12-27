@@ -1,0 +1,83 @@
+Entwicklung von Chipkartenanwendungen mit BasicCard
+
+Im Folgenden wird der Weg beschrieben, wie eine BasicCard Chipkartenanwendung nach [Rank] mit der BasicCard IDE exemplarisch abläuft. 
+
+Vorraussetzungen:
+
+* PC mit Windows Betriebssystem
+* BasicCard IDE
+* Kartenleser
+* BasicCard Chipkarte
+
+Es gibt zwei verschiedene Arten von BasicCard Anwendungen:
+
+* Kartenprogramme: Programme, welche auf der Karte ausgeführt werden
+* Terminalprogramme: Programme, die auf dem PC ausgeführt werden
+
+Beide dieser Programmtypen werden benötigt: Kartenprogramme, das BasicCard Chipkarten programmierbar sind, und über keinen universellen Befehlssatz verfügen. Terminalprogramme werden benötigt, weil die Karte sonst nicht sinnvoll verwendet werden kann. 
+
+Mit der BasicCard IDE können beide Programmtypen entwickelt werden, ihr Schwerpunkt liegt aber auf Kartenanwendungen. Daraus ergeben sich Einschränkungen für das Terminalprogramm, zum Beispiel werden GUI Elemente des Betriebssystems nicht unterstützt, es sind lediglich Kommandozeilenanwendungen möglich. Jedoch ist durch eine Erweiterung mit zusätzlichen Bibliotheken, die vom Hersteller bereitgestellt werden, diese Einschränkung leicht zu überwinden.
+
+Zudem ist es durch Bibliotheken und APIs möglich, Terminalprogramme zu schreiben, die nicht mit der BasicCard IDE erstellt wurden und evtl. in anderen Programmiersprachen wie Java, C/C++, Visual Basic oder .Net geschrieben wurden.
+
+
+Schritte zum Erstellen des Kartenprogramms in der BasicCard IDE:
+* Anlegen einer Datei mit der Endung .bas (Quelldatei)
+* Anlegen der Projektdateien (*.zcc, *.zcp): Die Quelldatei muss zu einem Projekt hinzugefügt werden, um übersetzt werden zu können. Für das Projekt ist es nötig, den Kartentyp und die Version anzugeben.
+
+
+Nun kann mit der Programmierung begonnen werden. Im Folgenden werden ein paar Besonderheiten der Entwicklung aufgezeigt.
+
+Besonderheiten bei Kartenprogrammen
+
+   Option Explicit
+   
+Virhindert die automatische Deklaration von Variablen, und somit das unerwünschte Anlegen von Variablen durch Schreibfehler.
+
+   EEPROM VariablenName as STRING = ""
+
+Wenn Variablen mit der Speicherklasse EEPROM versehen werden, werden sie auf dem EEPROM Speicher der Karte gespeichert. In diesem Fall wird eine String Variable mit einer leeren Zeichenkette initialisiert. Der Typ kann Zeichenketten mit der länge bis zu 254 Zeichen aufnehmen.
+
+   Command &H80 &H00 KommandoName(Var as String)
+     VariablenName = Var
+   End Command
+
+Um Variablen mit Inhalten zu belegen, können Kommandos verwendet werden. Diese sind Erweiterungen des normalen Basicsprachumfangs, welche einen Aufruf vom Terminalprogramm möglich machen. Für diese Kommandos sind APDUs definiert, die durch ein CLA und ein INS Byte gekennzeichnet sind.
+Hier wird zum Beispiel als Argument eine String Variable übergeben, welche dann einer globalen EEPROM Variable zugewiesen werden kann, um den Wert auf der Karte zu speichern.
+
+
+Besonderheiten bei Terminalprogrammen
+
+   Declare Command &H80 &H00 KommandoName(Var as String)
+   ...
+Um die implementierten Komandodefinitionen auf der Karte mit ihrem Namen aufrufen zu können, müssen dem Terminalprogramm die Kommandoprototypen bekannt sein. Damit man diese nicht für jedes Programm einzeln definieren muss, lagert man sie am besten in eine Datei mit der Endung .def aus. Dann kann man die Datei mit dem Befehl 
+   #include commands.def
+in das jeweilige Programm einbinden.
+
+Beispiel eines Terminalprogramms:
+
+   Option Explicit
+   #include commands.def
+   #include CARDUTIL.DEF
+
+   Public Eingabe as String 
+   Call WaitForCard()
+   ResetCard : Call CheckSW1SW2()
+   Print "Who is best pony?"
+   Line Input Eingabe
+   Call KommandoName(Eingabe)
+
+Mit dem Aufruf von WaitForCard() wird auf eine Karte im Kartenleser gewartet. CheckSW1SW2() prüft, ob ein Aufruffehler im Statuswort SW1SW2 angezeigt wird. Dann werden die vom Anwender eingebenen Daten mit einem Aufruf des Kommandos direkt auf die Karte übertragen.
+
+
+Nachdem das Kartenprogramm und das Terminalprogramm in einem lauffähigen Zustand sind, kann man die Programme auf einer echten Chipkarte testen, oder die BasicCard Chipkarte emulieren, in dem ein virtueller Kartenleser verwendet wird der von der IDE bereitgestellt wird. 
+
+
+
+
+
+__
+Quellen:
+
+[Rank] Rankl, Wolfgang: Chipkarten-Anwendungen, Entwurfsmuster für Einsatz und Programmierung von Chipkarten, Carl Hanser Verlag, 2006
+

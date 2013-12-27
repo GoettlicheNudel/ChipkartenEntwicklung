@@ -1,0 +1,27 @@
+Grobes Inhaltsverzeichniss für die Dokumentation:
+
+1.
+
+Einleitung
+
+Systemidee und Zielsetzung
+
+Vorgaben
+
+2.
+
+Hardware (Terminals, Karten)
+
+Software (version ide usw..)
+
+Use Cases (Anwendungsfälle selber schreiben)
+
+Fachlicheschnitstellen
+
+APDU-Spezifikation
+
+DatenElemente
+
+3.
+
+Menüführung - screenshots Beispiele
